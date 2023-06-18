@@ -60,7 +60,8 @@ func (s *Server) handleWebsocket(w http.ResponseWriter, req *http.Request) {
 		log.Fatalln("Error marshalling config:", err)
 	}
 	msg := "config " + string(data)
-	go conn.Write(msg)
+	conn.Write(msg)
+	s.pushState(conn)
 }
 
 // Close closes the underlying connections and channels.

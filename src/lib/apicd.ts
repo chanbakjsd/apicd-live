@@ -62,20 +62,22 @@ export const connect = () => {
 		setTimeout(connect, 1000);
 	};
 	websocket.onmessage = (msg: MessageEvent) => {
-		const decoded = (msg.data as string).split(' ', 2);
-		if (decoded.length !== 2) {
-			console.warn('expected space in event', decoded);
+		const data = msg.data as string;
+		if (data.indexOf(" ") === -1) {
+			console.warn('expected space in event', data);
 			return;
 		}
-		switch (decoded[0]) {
+		const cmd = data.slice(0, data.indexOf(" "))
+		const content = data.slice(data.indexOf(" "))
+		switch (cmd) {
 			case 'config':
-				config.set(JSON.parse(decoded[1]));
+				config.set(JSON.parse(content));
 				break;
 			case 'state':
-				state.set(JSON.parse(decoded[1]));
+				state.set(JSON.parse(content));
 				break;
 			default:
-				console.warn('unknown message type', decoded[0]);
+				console.warn('unknown message type', cmd);
 		}
 	};
 	ws.set(websocket);
