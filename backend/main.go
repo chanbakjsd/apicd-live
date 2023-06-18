@@ -7,6 +7,7 @@ import (
 	"log"
 	"net"
 	"net/http"
+	"os"
 	"strconv"
 )
 
@@ -31,21 +32,26 @@ func main() {
 	http.HandleFunc("/ws", s.handleWebsocket)
 	http.Handle("/", http.FileServer(http.FS(frontend)))
 	var listener net.Listener
-	port := 8080
-	for port < 65536 {
-		var err error
-		listener, err = net.Listen("tcp", "127.0.0.1:"+strconv.Itoa(port))
-		if err == nil {
-			break
+	if addr, ok := os.LookupEnv("LISTEN_ADDR"); ok {
+		listener, err = net.Listen("tcp", addr)
+	} else {
+		port := 8080
+		for port < 65536 {
+			listener, err = net.Listen("tcp", "127.0.0.1:"+strconv.Itoa(port))
+			if err == nil {
+				break
+			}
+			port++
 		}
-		port++
+		if err == nil {
+			log.Println("Presentation: http://127.0.0.1:" + strconv.Itoa(port))
+			log.Println("Admin:        http://127.0.0.1:" + strconv.Itoa(port) + "/admin.html")
+		}
 	}
-	if listener == nil {
-		log.Fatalln("Failed to bind to any port between 8080-65536.")
+	if err != nil {
+		log.Fatalln("Failed to listen:", err)
 	}
 
-	log.Println("Presentation: http://127.0.0.1:" + strconv.Itoa(port))
-	log.Println("Admin:        http://127.0.0.1:" + strconv.Itoa(port) + "/admin.html")
 	srv := http.Server{}
 	if err := srv.Serve(listener); err != nil {
 		log.Println("Error listening and serving:", err)
