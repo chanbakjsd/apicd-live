@@ -4,7 +4,7 @@
 	import { config, ws } from '../../lib/apicd';
 
 	const go = (i: number) => () => {
-		$ws.send(`go ${i}${$config.phases[i].time.map((x) => ` ${x}`)}`);
+		$ws.send(`go ${i}${$config.phases[i].time.map((x) => ` ${x}`).join("")}`);
 	};
 </script>
 

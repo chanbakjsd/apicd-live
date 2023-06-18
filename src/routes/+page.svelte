@@ -10,16 +10,6 @@
 		special[$config.side_a] = 'bg-red-500 p-1';
 		special[$config.side_b] = 'bg-blue-500 p-1';
 	}
-
-	let countdown = [
-		{
-			time: 210
-		},
-		{
-			time: 208,
-			active: true
-		}
-	];
 </script>
 
 <main>
@@ -33,7 +23,13 @@
 	</div>
 	<div class="countdown-container">
 		{#each $state.timer as time, i}
-			<p class="countdown" class:active={i === $state.active}>{formatTime(time)}</p>
+			<p
+				class="countdown"
+				class:active={i === $state.active && !$state.paused}
+				class:over={time === 0}
+			>
+				{formatTime(time)}
+			</p>
 		{/each}
 	</div>
 </main>
@@ -71,5 +67,11 @@
 	}
 	.countdown.active {
 		@apply text-white;
+	}
+	.countdown.over {
+		@apply text-red-800;
+	}
+	.countdown.over.active {
+		@apply text-red-500;
 	}
 </style>
