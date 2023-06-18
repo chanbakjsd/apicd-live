@@ -6,6 +6,7 @@
 	let boldClass = 'text-3xl lg:text-6xl text-yellow-500 font-bold';
 	let special: Record<string, string> = {};
 	$: {
+		special = {};
 		special[$config.side_a] = 'bg-red-500 p-1';
 		special[$config.side_b] = 'bg-blue-500 p-1';
 	}
@@ -40,7 +41,7 @@
 <style lang="postcss">
 	:global(body) {
 		@apply bg-center bg-cover text-white text-xl lg:text-5xl;
-		background-image: url('background.jpg');
+		background-image: url('/background.jpg');
 	}
 
 	main {

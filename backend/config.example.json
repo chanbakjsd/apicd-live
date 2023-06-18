@@ -1,0 +1,21 @@
+{
+	"side_a": "Side A",
+	"side_b": "Side B",
+	"phases": [
+		{ "text": "Side A 1", "time": [210] },
+		{ "text": "Side B 1", "time": [210] },
+		{ "text": "Side B 2", "time": [120] },
+		{ "text": "Side A 2", "time": [120] },
+		{ "text": "Side A 3", "time": [180] },
+		{ "text": "Side B 3", "time": [180] },
+		{ "text": "Side A 4", "time": [180] },
+		{ "text": "Side B 4", "time": [180] },
+		{ "text": "Side A 5", "time": [150] },
+		{ "text": "Side B 5", "time": [150] },
+		{ "text": "Side A 6", "time": [90] },
+		{ "text": "Side B 6", "time": [90] },
+		{ "text": "Free Discussion", "time": [240, 240] },
+		{ "text": "Side A 7", "time": [150] },
+		{ "text": "Side B 7", "time": [150] }
+	]
+}

@@ -1,9 +1,6 @@
 <script lang="ts">
 	import Button from '../../components/Button.svelte';
 	import { state } from '../../lib/apicd';
-
-	let sideAText = '信息碎片化*提升*了当代人的认知水平';
-	let sideBText = '信息碎片化*降低*了当代人的认知水平';
 </script>
 
 <table>

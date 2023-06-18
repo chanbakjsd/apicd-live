@@ -48,6 +48,9 @@ export const ws = writable<WebSocket>();
 export const connect = () => {
 	const url = location.protocol === 'https' ? `wss://${location.host}/ws` : `ws://${location.host}/ws`;
 	const websocket = new WebSocket(url);
+	websocket.onopen = () => {
+		connected.set(true);
+	};
 	websocket.onclose = () => {
 		connected.set(false);
 		console.warn('Websocket close');
