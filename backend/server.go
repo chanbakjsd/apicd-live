@@ -32,6 +32,7 @@ type Phase struct {
 }
 
 type State struct {
+	Title  string `json:"title"`
 	Phase  string `json:"phase"`
 	SideA  string `json:"side_a"`
 	SideB  string `json:"side_b"`
@@ -103,6 +104,9 @@ func (s *Server) ProcessCommand(commands []string) {
 		return
 	}
 	switch commands[0] {
+	case "title":
+		s.update = true
+		s.state.Title = strings.Join(commands[1:], " ")
 	case "sideA":
 		s.update = true
 		s.state.SideA = strings.Join(commands[1:], " ")

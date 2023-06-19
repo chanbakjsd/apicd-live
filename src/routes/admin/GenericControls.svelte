@@ -4,6 +4,7 @@
 
 	let sideA: HTMLInputElement;
 	let sideB: HTMLInputElement;
+	let title: HTMLInputElement;
 
 	const changeText = (cmd: string, e: HTMLInputElement) => () => {
 		$ws.send(cmd + ' ' + e.value);
@@ -15,6 +16,13 @@
 </script>
 
 <table>
+	<tr>
+		<td>Title</td>
+		<td>
+			<input bind:this={title} value={$state.title} />
+			<Button on:click={changeText('title', title)}>Change</Button>
+		</td>
+	</tr>
 	<tr>
 		<td>Side A</td>
 		<td>
@@ -33,9 +41,7 @@
 		<td>Timer</td>
 		<td>
 			<Button on:click={send('togglePause')}>Pause/Resume</Button>
-			<Button on:click={send('switchSide')} disabled={$state.timer.length <= 1}>
-				Switch Side
-			</Button>
+			<Button on:click={send('switchSide')} disabled={$state.timer.length <= 1}>Switch Side</Button>
 		</td>
 	</tr>
 </table>

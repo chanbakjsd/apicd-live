@@ -13,6 +13,10 @@
 </script>
 
 <main>
+	<div class="title">
+		<img src="/logo.png" alt="Logo of APICD" />
+		<p>{$state.title}</p>
+	</div>
 	<p><Text text={$state.phase} {special} /></p>
 	<div class="topic">
 		<p><Text text={$state.side_a} bold={boldClass} {special} /></p>
@@ -26,7 +30,7 @@
 			<p
 				class="countdown"
 				class:active={i === $state.active && !$state.paused}
-				class:over={time === 0}
+				class:over={time <= 30}
 			>
 				{formatTime(time)}
 			</p>
@@ -41,8 +45,14 @@
 	}
 
 	main {
-		@apply w-screen h-screen grid place-content-center text-center gap-16 pointer-events-none;
-		@apply bg-black/50 lg:p-[10vw] xl:p-[20vw];
+		@apply w-screen h-screen flex flex-col items-center justify-center text-center gap-16 pointer-events-none;
+		@apply bg-black/50 lg:px-[10vw] xl:px-[20vw];
+	}
+	.title {
+		@apply flex flex-col items-center;
+	}
+	img {
+		@apply w-24 h-24;
 	}
 	.topic {
 		@apply flex gap-4 text-xl justify-center items-center w-full;
@@ -63,7 +73,7 @@
 		@apply lg:gap-16;
 	}
 	.countdown {
-		@apply text-5xl lg:text-[12rem] text-gray-500;
+		@apply text-4xl lg:text-[10rem] lg:leading-[12rem] text-gray-500;
 	}
 	.countdown.active {
 		@apply text-white;

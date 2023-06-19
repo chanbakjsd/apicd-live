@@ -7,6 +7,7 @@ export type Config = {
 };
 
 export type State = {
+	title: string;
 	phase: string;
 	side_a: string;
 	side_b: string;
@@ -33,6 +34,7 @@ export const config = writable<Config>({
 });
 
 export const state = writable<State>({
+	title: '',
 	phase: '',
 	side_a: '',
 	side_b: '',
