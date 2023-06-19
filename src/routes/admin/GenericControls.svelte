@@ -2,9 +2,11 @@
 	import Button from '../../components/Button.svelte';
 	import { state, ws } from '../../lib/apicd';
 
+	let title: HTMLInputElement;
 	let sideA: HTMLInputElement;
 	let sideB: HTMLInputElement;
-	let title: HTMLInputElement;
+	let sideAName: HTMLInputElement;
+	let sideBName: HTMLInputElement;
 
 	const changeText = (cmd: string, e: HTMLInputElement) => () => {
 		$ws.send(cmd + ' ' + e.value);
@@ -13,28 +15,48 @@
 	const send = (cmd: string) => () => {
 		$ws.send(cmd);
 	};
+
+	const changeTeamName = () => {
+		changeText("sideAName", sideAName)()
+		changeText("sideBName", sideBName)()
+	}
+
+	const changePrompt = () => {
+		changeText("sideA", sideA)()
+		changeText("sideB", sideB)()
+	}
 </script>
 
 <table>
 	<tr>
 		<td>Title</td>
 		<td>
-			<input bind:this={title} value={$state.title} />
+			<input bind:this={title} placeholder="Title" value={$state.title} />
 			<Button on:click={changeText('title', title)}>Change</Button>
 		</td>
 	</tr>
 	<tr>
-		<td>Side A</td>
+		<td>Team</td>
 		<td>
-			<input bind:this={sideA} value={$state.side_a} />
-			<Button on:click={changeText('sideA', sideA)}>Change</Button>
+			<div class="inputs">
+			<div class="stack">
+			<input bind:this={sideAName} placeholder="Side A" value={$state.side_a_name} />
+			<input bind:this={sideBName} placeholder="Side B" value={$state.side_b_name} />
+			</div>
+			<Button on:click={changeTeamName}>Change</Button>
+			</div>
 		</td>
 	</tr>
 	<tr>
-		<td>Side B</td>
+		<td>Prompt</td>
 		<td>
-			<input bind:this={sideB} value={$state.side_b} />
-			<Button on:click={changeText('sideB', sideB)}>Change</Button>
+			<div class="inputs">
+			<div class="stack">
+			<input bind:this={sideA} placeholder="Side A" value={$state.side_a} />
+			<input bind:this={sideB} placeholder="Side B" value={$state.side_b} />
+			</div>
+			<Button on:click={changePrompt}>Change</Button>
+			</div>
 		</td>
 	</tr>
 	<tr>
@@ -49,6 +71,12 @@
 <style lang="postcss">
 	td {
 		@apply px-2 py-1;
+	}
+	.inputs {
+		@apply flex gap-2;
+	}
+	.stack {
+		@apply inline-block flex flex-col gap-1;
 	}
 	input {
 		@apply border border-black;

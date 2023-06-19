@@ -11,6 +11,8 @@ export type State = {
 	phase: string;
 	side_a: string;
 	side_b: string;
+	side_a_name: string;
+	side_b_name: string;
 
 	timer: number[];
 	active: number;
@@ -18,6 +20,7 @@ export type State = {
 };
 
 export type Phase = {
+	label: string;
 	text: string;
 	time: number[];
 };
@@ -38,6 +41,8 @@ export const state = writable<State>({
 	phase: '',
 	side_a: '',
 	side_b: '',
+	side_a_name: '',
+	side_b_name: '',
 	timer: [],
 	active: -1,
 	paused: true

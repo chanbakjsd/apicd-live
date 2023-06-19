@@ -17,6 +17,10 @@
 		<img src="/logo.png" alt="Logo of APICD" />
 		<p>{$state.title}</p>
 	</div>
+	<div class="teams">
+		<p>{$state.side_a_name}</p>
+		<p>{$state.side_b_name}</p>
+	</div>
 	<p><Text text={$state.phase} {special} /></p>
 	<div class="topic">
 		<p><Text text={$state.side_a} bold={boldClass} {special} /></p>
@@ -45,8 +49,8 @@
 	}
 
 	main {
-		@apply w-screen h-screen flex flex-col items-center justify-center text-center gap-16 pointer-events-none;
-		@apply bg-black/50 lg:px-[10vw] xl:px-[20vw];
+		@apply w-screen h-screen flex flex-col items-center justify-center text-center gap-8 pointer-events-none;
+		@apply bg-black/50 lg:gap-10 xl:gap-12 2xl:gap-16 xl:px-[5vw] 2xl:px-[10vw];
 	}
 	.title {
 		@apply flex flex-col items-center;
@@ -54,13 +58,16 @@
 	img {
 		@apply w-24 h-24;
 	}
+	.teams {
+		@apply flex gap-8 lg:gap-16 text-2xl xl:text-4xl 2xl:text-6xl;
+	}
 	.topic {
 		@apply flex gap-4 text-xl justify-center items-center w-full;
-		@apply lg:gap-8 lg:text-4xl;
+		@apply lg:gap-6 lg:text-3xl 2xl:gap-8 2xl:text-4xl;
 	}
 	.side {
 		@apply p-4 rounded-full shrink-0 text-2xl;
-		@apply lg:p-8 lg:text-6xl;
+		@apply lg:p-6 lg:text-4xl 2xl:p-8 2xl:text-6xl;
 	}
 	.side-a {
 		@apply bg-red-500;
@@ -73,7 +80,7 @@
 		@apply lg:gap-16;
 	}
 	.countdown {
-		@apply text-4xl lg:text-[10rem] lg:leading-[12rem] text-gray-500;
+		@apply text-4xl xl:text-9xl 2xl:text-[10rem] 2xl:leading-[12rem] text-gray-500;
 	}
 	.countdown.active {
 		@apply text-white;

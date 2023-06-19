@@ -27,18 +27,21 @@ type Config struct {
 }
 
 type Phase struct {
-	Text string `json:"text"`
-	Time []int  `json:"time"`
+	Text  string `json:"text"`
+	Time  []int  `json:"time"`
+	Label string `json:"label,omitempty"`
 }
 
 type State struct {
-	Title  string `json:"title"`
-	Phase  string `json:"phase"`
-	SideA  string `json:"side_a"`
-	SideB  string `json:"side_b"`
-	Timer  []int  `json:"timer"`
-	Active int    `json:"active"`
-	Paused bool   `json:"paused"`
+	Title     string `json:"title"`
+	Phase     string `json:"phase"`
+	SideA     string `json:"side_a"`
+	SideB     string `json:"side_b"`
+	SideAName string `json:"side_a_name"`
+	SideBName string `json:"side_b_name"`
+	Timer     []int  `json:"timer"`
+	Active    int    `json:"active"`
+	Paused    bool   `json:"paused"`
 }
 
 // NewServer returns a server with the specified config.
@@ -113,6 +116,12 @@ func (s *Server) ProcessCommand(commands []string) {
 	case "sideB":
 		s.update = true
 		s.state.SideB = strings.Join(commands[1:], " ")
+	case "sideAName":
+		s.update = true
+		s.state.SideAName = strings.Join(commands[1:], " ")
+	case "sideBName":
+		s.update = true
+		s.state.SideBName = strings.Join(commands[1:], " ")
 	case "go":
 		if len(commands) < 2 {
 			log.Println("Expected arguments:", strings.Join(commands, " "))

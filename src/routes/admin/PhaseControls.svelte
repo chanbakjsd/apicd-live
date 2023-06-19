@@ -11,7 +11,7 @@
 <table>
 	{#each $config.phases as phase, i}
 		<tr>
-			<td>{phase.text}</td>
+			<td>{phase.label || phase.text}</td>
 			<td>
 				{#each phase.time as time}
 					<TimeInput bind:value={time} />
