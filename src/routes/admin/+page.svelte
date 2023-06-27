@@ -3,10 +3,14 @@
 	import PhaseControls from './PhaseControls.svelte';
 </script>
 
+<svelte:head>
+	<title>Admin Interface</title>
+</svelte:head>
+
 <main>
 	<div class="preview">
 		<p class="label">Live</p>
-		<iframe src=".." />
+		<iframe src="./" title="Preview of page being shown to audience" />
 	</div>
 	<div class="divider" />
 	<div class="admin">

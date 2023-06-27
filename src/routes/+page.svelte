@@ -12,9 +12,13 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Audience View</title>
+</svelte:head>
+
 <main>
 	<div class="title">
-		<img src="/logo.png" alt="Logo of APICD" />
+		<img src="logo.png" alt="Logo of APICD" />
 		<p>{$state.title}</p>
 	</div>
 	<div class="teams">
